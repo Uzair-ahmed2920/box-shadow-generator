@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
 
 function App() {
+  const [Hori,setHori]= useState(10)
+  const [Veri,setVeri]= useState(10)
+  const [Blur,setBlur]= useState(10)
+  const [Color,setColor]= useState(10)
+  const [Bgcolor,setBgcolor]= useState(10)
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='control'>
+      <label>Background Color</label>
+      <input type="color" value={Bgcolor} onChange={(e)=>setBgcolor(e.target.value)} />
+      <label>Horizontal Length</label>
+      <input type="range" min="-200" max="200" value={Hori} onChange={(e)=>setHori(e.target.value)} />
+      <label>Vertical Length</label>
+      <input type="range" min="-200" max="200" value={Veri} onChange={(e)=>setVeri(e.target.value)} />
+      <label>Blur</label>
+      <input type="range" min="0" max="200" value={Blur} onChange={(e)=>setBlur(e.target.value)} />
+      <label>Color</label>
+      <input type="color" value={Color} onChange={(e)=>setColor(e.target.value)} />
+      </div> 
+      
+      <div className='output'>
+        <div className='box' style={{boxShadow:`${Hori}px ${Veri}px ${Blur}px ${Color}`,backgroundColor:`${Bgcolor}`}}></div>
+      </div>
     </div>
   );
 }
